@@ -2,11 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 const fetch = require('node-fetch');
-const Hike = require('../models/hike');
+const Itinerary = require('../models/itinerary');
 const { checkBody } = require('../modules/checkBody');
 
 
-/* POST new hike */
+/* POST new Itinerary */
 router.post('/', (req, res) => {
   if (!checkBody(req.body, ['departure', 'arrival'])) {
     res.json({ result: false, error: 'Missing or empty fields' });
@@ -14,9 +14,9 @@ router.post('/', (req, res) => {
   }
 
   const { departure, arrival } = req.body;
-  const newHike = new Hike({ departure, arrival });
+  const newItinerary = new Itinerary({ departure, arrival });
 
-  newHike.save().then(() => {
+  newItinerary.save().then(() => {
     res.json({ result: true });
   });
 });
