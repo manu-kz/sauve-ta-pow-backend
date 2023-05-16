@@ -9,7 +9,7 @@ require('./models/connection');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var hikesRouter = require('./routes/hikes');
+var itinerariesRouter = require('./routes/itineraries');
 var articlesRouter = require('./routes/articles');
 
 
@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/hikes', hikesRouter);
-app.use('/articles', hikesRouter);
+app.use('/hikes', itinerariesRouter);
+app.use('/articles', articlesRouter);
 
 module.exports = app;
