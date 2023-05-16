@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('./models/connection')
 
 var express = require('express');
 var path = require('path');
@@ -10,6 +11,8 @@ require('./models/connection');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var hikesRouter = require('./routes/hikes');
+var articlesRouter = require('./routes/articles');
+
 
 var app = express();
 
@@ -25,5 +28,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/hikes', hikesRouter);
+app.use('/articles', hikesRouter);
 
 module.exports = app;
