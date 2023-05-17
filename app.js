@@ -12,6 +12,7 @@ var usersRouter = require('./routes/users');
 var itinerariesRouter = require('./routes/itineraries');
 var articlesRouter = require('./routes/articles');
 var meteoRouter = require('./routes/meteo');
+var bookmarksRouter = require('./routes/bookmarks');
 
 
 var app = express();
@@ -31,5 +32,6 @@ app.use('/itineraries', itinerariesRouter);
 app.use('/articles', articlesRouter);
 app.use('/meteo', meteoRouter);
 
+app.use('/bookmarks', bookmarksRouter);
 
 module.exports = app;
