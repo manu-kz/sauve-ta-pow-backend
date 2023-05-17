@@ -26,6 +26,7 @@ router.post("/signup", async (req, res) => {
   }
 
   console.log("req.body", req.body);
+
   const {
     firstname,
     lastname,
@@ -73,13 +74,7 @@ router.post("/signup", async (req, res) => {
       bloodType: bloodType,
       allergies: allergies,
       treatment: treatment,
-      medicalHistory: {
-        cardiacCase: medicalHistory.cardiacCase,
-        pulmonaryCase: medicalHistory.pulmonaryCase,
-        bloodHistory: medicalHistory.bloodHistory,
-        neurologicalCase: medicalHistory.neurologicalCase,
-        info: medicalHistory.info,
-      },
+      medicalHistory: medicalHistory,
       advanceDirectives: advanceDirectives,
       trustedPerson: {
         firstname: trustedPerson.firstname,

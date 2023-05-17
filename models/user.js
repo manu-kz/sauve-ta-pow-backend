@@ -1,11 +1,26 @@
 const mongoose = require("mongoose");
 
 const medicalHistory = mongoose.Schema({
-  cardiacCase: Boolean,
-  pulmonaryCase: Boolean,
-  bloodHistory: Boolean,
-  neurologicalCase: Boolean,
-  info: String,
+  cardiacCase: {
+    type: Boolean,
+    default: false
+  },
+  pulmonaryCase: {
+    type: Boolean,
+    default: false
+  },
+  bloodHistory: {
+    type: Boolean,
+    default: false
+  },
+  neurologicalCase: {
+    type: Boolean,
+    default: false
+  },
+  info: {
+    type: String,
+    default: null
+  },
 });
 
 
@@ -20,9 +35,18 @@ const bookmarks = mongoose.Schema({
 });
 
 const trustedPerson = mongoose.Schema({
-  firstname: String,
-  lastname: String,
-  phoneNumber: Number,
+  firstname: {
+    type: String,
+    default: null
+  },
+  lastname: {
+    type: String,
+    default: null
+  },
+  phoneNumber: {
+    type: Number,
+    default: null
+  },
 });
 
 const userSchema = mongoose.Schema({
@@ -39,20 +63,38 @@ const userSchema = mongoose.Schema({
   adresse: String,
 
   //Health Info
-  socialSecurityNumber: Number,
-  weight: Number,
-  height: Number,
-  bloodType: String,
-  smoker: Boolean,
+  socialSecurityNumber: {
+    type: Number,
+    default: null
+  },
+  weight: {
+    type: Number,
+    default: null
+  },
+  height: {
+    type: Number,
+    default: null
+  },
+  bloodType: {
+    type: String,
+    default: null
+  },
+  smoker: {
+    type: Boolean,
+    default: false
+  },
   drugUse: Array,
   allergies: Array,
   treatment: Array,
   medicalHistory: medicalHistory,
-  advanceDirectives: Boolean,
+  advanceDirectives: {
+    type: Boolean,
+    default: false
+  },
   trustedPerson: trustedPerson,
 
   //App Usage
-  bookmarks: bookmarks,
+  bookmarks: [bookmarks],
   itineraries: [{ type: mongoose.Schema.Types.ObjectId, ref: "itineraries" }],
 });
 
