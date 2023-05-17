@@ -26,6 +26,7 @@ router.post("/signup", async (req, res) => {
   }
 
   console.log("req.body", req.body);
+
   const {
     firstname,
     lastname,
@@ -73,28 +74,10 @@ router.post("/signup", async (req, res) => {
       bloodType: bloodType,
       allergies: allergies,
       treatment: treatment,
-      medicalHistory: {
-        cardiacCase: medicalHistory.cardiacCase,
-        pulmonaryCase: medicalHistory.pulmonaryCase,
-        bloodHistory: medicalHistory.bloodHistory,
-        neurologicalCase: medicalHistory.neurologicalCase,
-        info: medicalHistory.info,
-      },
+      medicalHistory: medicalHistory,
       advanceDirectives: advanceDirectives,
-      trustedPerson: {
-        firstname: trustedPerson.firstname,
-        lastname: trustedPerson.lastname,
-        phoneNumber: trustedPerson.phoneNumber,
-      },
-      bookmarks: {
-        author: bookmarks.author,
-        title: bookmarks.title,
-        description: bookmarks.description,
-        url: bookmarks.url,
-        urlToImage: bookmarks.urlToImage,
-        publishedAt: bookmarks.publishedAt,
-        content: bookmarks.content,
-      },
+      trustedPerson: trustedPerson,
+      bookmarks: bookmarks,
       itineraries:itineraries
     });
     res.json({
