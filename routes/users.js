@@ -86,15 +86,7 @@ router.post("/signup", async (req, res) => {
         lastname: trustedPerson.lastname,
         phoneNumber: trustedPerson.phoneNumber,
       },
-      bookmarks: {
-        author: bookmarks.author,
-        title: bookmarks.title,
-        description: bookmarks.description,
-        url: bookmarks.url,
-        urlToImage: bookmarks.urlToImage,
-        publishedAt: bookmarks.publishedAt,
-        content: bookmarks.content,
-      },
+      bookmarks: [],
       itineraries:itineraries
     });
     res.json({
