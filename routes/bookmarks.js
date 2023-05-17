@@ -20,13 +20,12 @@ const User = require("../models/user");
 router.post('/newBookmark/:token', (req, res) => {
 
   console.log('req body route ==> ',req.body)
-  const bookmark = req.body.bookmark
+  const bookmark = req.body
 
   User.updateOne({ token: req.params.token }, 
     {$push: { bookmarks: bookmark }})
     .then(data => {
     if (data) {
-      console.log(data)
       res.json({ result: true, bookmark: bookmark })
     } else {
       // User already exists in database
