@@ -25,7 +25,7 @@ router.post("/signup", async (req, res) => {
     return;
   }
 
-  console.log('req.body', req.body)
+  console.log("req.body", req.body);
   const {
     firstname,
     lastname,
@@ -44,7 +44,9 @@ router.post("/signup", async (req, res) => {
     treatment,
     medicalHistory,
     advanceDirectives,
-    trustedPerson
+    trustedPerson,
+    bookmarks,
+    itineraries
   } = req.body;
 
   const findUser = await User.findOne({ username: username });
@@ -76,13 +78,25 @@ router.post("/signup", async (req, res) => {
         pulmonaryCase: medicalHistory.pulmonaryCase,
         bloodHistory: medicalHistory.bloodHistory,
         neurologicalCase: medicalHistory.neurologicalCase,
-        info: medicalHistory.info,},
+        info: medicalHistory.info,
+      },
       advanceDirectives: advanceDirectives,
-      trustedPerson:{
-        firstname: trustedPerson.firstname, 
-        lastname:trustedPerson.lastname,
+      trustedPerson: {
+        firstname: trustedPerson.firstname,
+        lastname: trustedPerson.lastname,
         phoneNumber: trustedPerson.phoneNumber,
-    }});
+      },
+      bookmarks: {
+        author: bookmarks.author,
+        title: bookmarks.title,
+        description: bookmarks.description,
+        url: bookmarks.url,
+        urlToImage: bookmarks.urlToImage,
+        publishedAt: bookmarks.publishedAt,
+        content: bookmarks.content,
+      },
+      itineraries:itineraries
+    });
     res.json({
       result: true,
       message: "User succesfully created",
@@ -91,7 +105,6 @@ router.post("/signup", async (req, res) => {
     return;
   }
 });
-
 
 /* POST SIGN IN */
 
@@ -107,13 +120,15 @@ router.post("/signin", async (req, res) => {
     username: username,
   });
 
-  if (findUser && bcrypt.compareSync(password, findUser.password)){
-    res.json({ result: true, message: "Login successful", token: findUser.token });
+  if (findUser && bcrypt.compareSync(password, findUser.password)) {
+    res.json({
+      result: true,
+      message: "Login successful",
+      token: findUser.token,
+    });
   } else {
     res.json({ result: false, error: "Wrong password or username" });
   }
 });
-
-
 
 module.exports = router;
