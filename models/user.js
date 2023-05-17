@@ -1,27 +1,27 @@
 const mongoose = require("mongoose");
 
-const medicalHistory = mongoose.Schema({
-  cardiacCase: {
-    type: Boolean,
-    default: false
-  },
-  pulmonaryCase: {
-    type: Boolean,
-    default: false
-  },
-  bloodHistory: {
-    type: Boolean,
-    default: false
-  },
-  neurologicalCase: {
-    type: Boolean,
-    default: false
-  },
-  info: {
-    type: String,
-    default: null
-  },
-});
+// const medicalHistory = mongoose.Schema({
+//   cardiacCase: {
+//     type: Boolean,
+//     default: false
+//   },
+//   pulmonaryCase: {
+//     type: Boolean,
+//     default: false
+//   },
+//   bloodHistory: {
+//     type: Boolean,
+//     default: false
+//   },
+//   neurologicalCase: {
+//     type: Boolean,
+//     default: false
+//   },
+//   info: {
+//     type: String,
+//     default: null
+//   },
+// });
 
 
 const bookmarks = mongoose.Schema({
@@ -34,20 +34,20 @@ const bookmarks = mongoose.Schema({
   content: String,
 });
 
-const trustedPerson = mongoose.Schema({
-  firstname: {
-    type: String,
-    default: null
-  },
-  lastname: {
-    type: String,
-    default: null
-  },
-  phoneNumber: {
-    type: Number,
-    default: null
-  },
-});
+// const trustedPerson = mongoose.Schema({
+//   firstname: {
+//     type: String,
+//     default: null
+//   },
+//   lastname: {
+//     type: String,
+//     default: null
+//   },
+//   phoneNumber: {
+//     type: Number,
+//     default: null
+//   },
+// });
 
 const userSchema = mongoose.Schema({
   //User Info
@@ -86,12 +86,46 @@ const userSchema = mongoose.Schema({
   drugUse: Array,
   allergies: Array,
   treatment: Array,
-  medicalHistory: {medicalHistory},
+  medicalHistory: {
+    cardiacCase: {
+      type: Boolean,
+      default: false
+    },
+    pulmonaryCase: {
+      type: Boolean,
+      default: false
+    },
+    bloodHistory: {
+      type: Boolean,
+      default: false
+    },
+    neurologicalCase: {
+      type: Boolean,
+      default: false
+    },
+    info: {
+      type: String,
+      default: null
+    },
+  },
   advanceDirectives: {
     type: Boolean,
     default: false
   },
-  trustedPerson: {trustedPerson},
+  trustedPerson: {
+    firstname: {
+      type: String,
+      default: null
+    },
+    lastname: {
+      type: String,
+      default: null
+    },
+    phoneNumber: {
+      type: Number,
+      default: null
+    },
+  },
 
   //App Usage
   bookmarks: [bookmarks],

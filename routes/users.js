@@ -74,10 +74,10 @@ router.post("/signup", async (req, res) => {
       bloodType: bloodType,
       allergies: allergies,
       treatment: treatment,
-      medicalHistory: medicalHistory,
+      // medicalHistory: medicalHistory,
       advanceDirectives: advanceDirectives,
-      trustedPerson: trustedPerson,
-      bookmarks: [],
+      // trustedPerson: trustedPerson,
+      bookmarks: bookmarks,
       itineraries:itineraries
     });
     res.json({
