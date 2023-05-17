@@ -16,28 +16,18 @@ const User = require("../models/user");
   //   content: bookmarks.content,
   // }
 
-// mettre ce token en exemple dans le front pour le mettre dans l'url pour le bac en attendant que tous soit synchro
-const tokenTest = 'gnkrjg456gfee4gr4gegrzqf'
-
 // post un article bookmark pour un utilisateur en fonction du token
-router.post('/newBookmark/:token', (req, res) => {
+router.post('/newBookmark/:token', (req, res) => {
 
-  const bookmark = {
-  author: 'emi',
-  title: 'au tekos',
-  description: 'gros tapage de pied',
-  url: 'http://big48htesmort.com',
-  urlToImage: 'http://imagedemagrossegueuleaperslatawa.com',
-  publishedAt: 'jsp',
-  content: 'stringstringstring',
-  }
+  console.log('req body route ==> ',req.body)
+  const bookmark = req.body.bookmark
 
   User.updateOne({ token: req.params.token }, 
     {$push: { bookmarks: bookmark }})
     .then(data => {
     if (data) {
       console.log(data)
-      res.json({ result: true})
+      res.json({ result: true, bookmark: bookmark })
     } else {
       // User already exists in database
       res.json({ result: false, error: 'Document not push in bookmarks' });
