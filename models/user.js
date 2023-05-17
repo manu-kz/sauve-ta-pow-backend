@@ -86,12 +86,12 @@ const userSchema = mongoose.Schema({
   drugUse: Array,
   allergies: Array,
   treatment: Array,
-  medicalHistory: medicalHistory,
+  medicalHistory: {medicalHistory},
   advanceDirectives: {
     type: Boolean,
     default: false
   },
-  trustedPerson: trustedPerson,
+  trustedPerson: {trustedPerson},
 
   //App Usage
   bookmarks: [bookmarks],
