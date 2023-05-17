@@ -11,6 +11,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var itinerariesRouter = require('./routes/itineraries');
 var articlesRouter = require('./routes/articles');
+var bookmarksRouter = require('./routes/bookmarks');
 
 
 var app = express();
@@ -28,5 +29,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/itineraries', itinerariesRouter);
 app.use('/articles', articlesRouter);
+app.use('/bookmarks', bookmarksRouter);
 
 module.exports = app;

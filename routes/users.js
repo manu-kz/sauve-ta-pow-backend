@@ -76,11 +76,7 @@ router.post("/signup", async (req, res) => {
       treatment: treatment,
       medicalHistory: medicalHistory,
       advanceDirectives: advanceDirectives,
-      trustedPerson: {
-        firstname: trustedPerson.firstname,
-        lastname: trustedPerson.lastname,
-        phoneNumber: trustedPerson.phoneNumber,
-      },
+      trustedPerson: trustedPerson,
       bookmarks: [],
       itineraries:itineraries
     });

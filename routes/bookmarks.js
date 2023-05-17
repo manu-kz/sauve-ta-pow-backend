@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const fetch = require('node-fetch');
-
+const User = require("../models/user");
 
 // scéma bookmark => 
 // const bookmarks = mongoose.Schema({
@@ -37,9 +37,10 @@ router.post('/newBookmark/:token', (req, res) => {
     .then(data => {
     if (data) {
       console.log(data)
+      res.json({ result: true})
     } else {
       // User already exists in database
-      res.json({ result: false, error: 'User already exists' });
+      res.json({ result: false, error: 'Document not push in bookmarks' });
     }
   });
   });
@@ -74,6 +75,7 @@ router.delete('/deleteBookmark/:token', (req, res) => {
       .then(data => {
       if (data) {
         console.log(data)
+        res.json({ result: true, delete: 'Document deleted'})
       } else {
         // User already exists in database
         res.json({ result: false, error: 'User already exists' });
