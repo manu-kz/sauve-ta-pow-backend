@@ -47,12 +47,16 @@ router.post("/signup", async (req, res) => {
     advanceDirectives,
     trustedPerson,
     bookmarks,
-    itineraries
+    itineraries,
   } = req.body;
 
-  const findUser = await User.findOne({ username: username });
-  if (findUser) {
+  const findUserByUsername = await User.findOne({ username: username });
+  const findUserByEmail = await User.findOne({ email: email });
+  if (findUserByUsername) {
     res.json({ result: false, error: "Username already used" });
+    return;
+  } else if (findUserByEmail) {
+    res.json({ result: false, error: "Email already used" });
     return;
   } else {
     const token = uid2(32);
@@ -78,7 +82,7 @@ router.post("/signup", async (req, res) => {
       advanceDirectives: advanceDirectives,
       // trustedPerson: trustedPerson,
       bookmarks: bookmarks,
-      itineraries:itineraries
+      itineraries: itineraries,
     });
     res.json({
       result: true,
