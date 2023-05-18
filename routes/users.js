@@ -170,12 +170,15 @@ router.post("/update", async (req, res) => {
       itineraries,
     }
   );
-  if (updateUser) {
+  if (updateUser.modifiedCount === 0) {
     res.json({
-      result: true,
-      message: "User succesfully updated",
-      user: updateUser,
-    });
+      result: false,
+      message: "Nothing updated",
+    }) } else if (updateUser.modifiedCount > 0) {
+      res.json({
+        result: true,
+        message: "User updated",
+      });
     return;
   }
 });
