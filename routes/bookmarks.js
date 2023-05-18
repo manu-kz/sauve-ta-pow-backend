@@ -19,9 +19,7 @@ const User = require("../models/user");
 // post un article bookmark pour un utilisateur en fonction du token
 router.post('/newBookmark/:token', (req, res) => {
 
-  console.log('req body route ==> ',req.body)
-  const bookmark = req.body.bookmark
-  console.log(bookmark)
+  const bookmark = req.body
 
   User.updateOne({ token: req.params.token }, 
     {$push: { bookmarks: bookmark }})
@@ -50,25 +48,18 @@ router.get('/bookmarks/:token', (req, res) => {
 // delete un article bookmark en fonction du token 
 router.delete('/deleteBookmark/:token', (req, res) => {
   // variable avec les infos reçu du front de l'article que l'ont veut bookmark
-  const bookmark = {
-    author: 'emi',
-    title: 'au tekos',
-    description: 'gros tapage de pied',
-    url: 'http://big48htesmort.com',
-    urlToImage: 'http://imagedemagrossegueuleaperslatawa.com',
-    publishedAt: 'jsp',
-    content: 'stringstringstring',
-    }
+  const bookmark = req.body
+  console.log('req.body ==>',req.body)
   
     User.updateOne({ token: req.params.token }, 
-      {$pull: { bookmarks: bookmark }})
+      {$pull: { bookmarks: { title: bookmark.title }}})
       .then(data => {
       if (data) {
         console.log(data)
-        res.json({ result: true, delete: 'Document deleted'})
+        res.json({ result: true, bookmark: bookmark})
       } else {
         // User already exists in database
-        res.json({ result: false, error: 'User already exists' });
+        res.json({ result: false, error: 'Delete did not work' });
       }
     });
   });
