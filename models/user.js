@@ -69,7 +69,7 @@ const userSchema = mongoose.Schema({
   },
   weight: {
     type: Number,
-    default: null
+   
   },
   height: {
     type: Number,

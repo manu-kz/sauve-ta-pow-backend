@@ -78,9 +78,9 @@ router.post("/signup", async (req, res) => {
       bloodType: bloodType,
       allergies: allergies,
       treatment: treatment,
-      // medicalHistory: medicalHistory,
+      medicalHistory: medicalHistory,
       advanceDirectives: advanceDirectives,
-      // trustedPerson: trustedPerson,
+      trustedPerson: trustedPerson,
       bookmarks: bookmarks,
       itineraries: itineraries,
     });
@@ -115,6 +115,68 @@ router.post("/signin", async (req, res) => {
     });
   } else {
     res.json({ result: false, error: "Wrong password or username" });
+  }
+});
+
+/* POST UPDATE INFO */
+
+router.post("/update", async (req, res) => {
+  const {
+    firstname,
+    lastname,
+    username,
+    email,
+    token,
+    phoneNumber,
+    dateOfBirth,
+    adresse,
+    socialSecurityNumber,
+    weight,
+    height,
+    smoker,
+    bloodType,
+    allergies,
+    treatment,
+    medicalHistory,
+    advanceDirectives,
+    trustedPerson,
+    bookmarks,
+    itineraries,
+  } = req.body;
+  console.log("req.body", req.body);
+
+  const updateUser = await User.updateOne(
+    { token: token },
+    {
+      firstname,
+      lastname,
+      username,
+      email,
+      token,
+      phoneNumber,
+      dateOfBirth,
+      adresse,
+      socialSecurityNumber,
+      weight,
+      height,
+      smoker,
+      bloodType,
+      allergies,
+      treatment,
+      medicalHistory,
+      advanceDirectives,
+      trustedPerson,
+      bookmarks,
+      itineraries,
+    }
+  );
+  if (updateUser) {
+    res.json({
+      result: true,
+      message: "User succesfully updated",
+      user: updateUser,
+    });
+    return;
   }
 });
 
