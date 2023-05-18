@@ -20,6 +20,7 @@ const User = require("../models/user");
 router.post('/newBookmark/:token', (req, res) => {
 
   const bookmark = req.body
+  console.log(bookmark)
 
   User.updateOne({ token: req.params.token }, 
     {$push: { bookmarks: bookmark }})
