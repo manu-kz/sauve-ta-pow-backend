@@ -135,13 +135,12 @@ router.post("/update", async (req, res) => {
     height,
     smoker,
     bloodType,
+    drugUse,
     allergies,
     treatment,
     medicalHistory,
     advanceDirectives,
     trustedPerson,
-    bookmarks,
-    itineraries,
   } = req.body;
   console.log("req.body", req.body);
 
@@ -152,7 +151,6 @@ router.post("/update", async (req, res) => {
       lastname,
       username,
       email,
-      token,
       phoneNumber,
       dateOfBirth,
       adresse,
@@ -160,16 +158,14 @@ router.post("/update", async (req, res) => {
       weight,
       height,
       smoker,
+      drugUse,
       bloodType,
       allergies,
       treatment,
       medicalHistory,
       advanceDirectives,
       trustedPerson,
-      bookmarks,
-      itineraries,
-    }
-  );
+    });
   if (updateUser.modifiedCount === 0) {
     res.json({
       result: false,

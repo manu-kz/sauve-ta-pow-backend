@@ -83,9 +83,18 @@ const userSchema = mongoose.Schema({
     type: Boolean,
     default: false
   },
-  drugUse: Array,
-  allergies: Array,
-  treatment: Array,
+  drugUse: {
+    type: String,
+    default: null
+  },
+  allergies: {
+    type: String,
+    default: null
+  },
+  treatment: {
+    type: String,
+    default: null
+  },
   medicalHistory: {
     cardiacCase: {
       type: Boolean,
