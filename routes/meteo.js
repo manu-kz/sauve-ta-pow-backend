@@ -36,7 +36,6 @@ router.get('/:locationKey', (req, res) => {
     .then((response) => response.json())
     .then((data) => {
       if (data) {
-        console.log('data', data);
         // return données de meteo du moment
         res.json({ meteo: data });
       } else {
@@ -59,6 +58,23 @@ router.get('/hourly/:locationKey', (req, res) => {
       if (data) {
         // return données de meteo du moment
        res.json({ meteo: data });
+      } else {
+        res.json({ error: 'Location not found' });
+      }
+    });
+});
+
+router.get('/daily/:locationKey', (req, res) => {
+  const locationKey = req.params.locationKey;
+
+  fetch(
+ `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${apiKey}&language=fr-fr&metric=true`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        // return données de meteo du moment
+       res.json({ meteo: data.DailyForecasts });
       } else {
         res.json({ error: 'Location not found' });
       }
