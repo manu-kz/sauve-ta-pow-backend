@@ -179,4 +179,67 @@ router.post("/update", async (req, res) => {
   }
 });
 
+router.get('/:token', (req, res) => {
+  const token = req.params.token
+  User.find({token}).then(data => {
+    if(data) {
+      const {
+        firstname,
+        lastname,
+        username,
+        email,
+        password,
+        phoneNumber,
+        dateOfBirth,
+        adresse,
+        socialSecurityNumber,
+        weight,
+        height,
+        smoker,
+        bloodType,
+        allergies,
+        treatment,
+        medicalHistory,
+        advanceDirectives,
+        trustedPerson,
+        bookmarks,
+        itineraries,
+      } = data
+      console.log(data)
+      res.json({result: true, user: data })
+    } else {
+      res.json({ result: false, error: 'user not found or problem in backend'})
+    }
+  })
+})
+
+// {
+//   medicalHistory: {
+//     cardiacCase: false,
+//     pulmonaryCase: false,
+//     bloodHistory: false,
+//     neurologicalCase: false,
+//     info: null
+//   },
+//   trustedPerson: { firstname: null, lastname: null, phoneNumber: null }, 
+//   _id: new ObjectId("64663763d387cd7041b73796"),
+//   firstname: 'Isisb',
+//   lastname: 'Jauge',
+//   username: 'onb',
+//   email: 'jdisb',
+//   password: '$2b$10$uLs5rMkFI6S7TnjE7PAVke3r23nYOnhbIHwmQJydLvtTBO0BkuB2G',
+//   token: 'o8Z4q7zKRobH7VJ-AxxJsqxjtL5fqmAK',
+//   phoneNumber: 54318,
+//   dateOfBirth: '2023-01-01',
+//   adresse: 'Naive',
+//   socialSecurityNumber: null,
+//   weight: null,
+//   height: null,
+//   bloodType: null,
+//   smoker: false,
+//   advanceDirectives: false,
+//   bookmarks: [],
+//   itineraries: [],
+//   __v: 0
+// }
 module.exports = router;
