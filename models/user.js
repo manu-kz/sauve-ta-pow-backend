@@ -1,12 +1,27 @@
 const mongoose = require("mongoose");
 
-const medicalHistory = mongoose.Schema({
-  cardiacCase: Boolean,
-  pulmonaryCase: Boolean,
-  bloodHistory: Boolean,
-  neurologicalCase: Boolean,
-  info: String,
-});
+// const medicalHistory = mongoose.Schema({
+//   cardiacCase: {
+//     type: Boolean,
+//     default: false
+//   },
+//   pulmonaryCase: {
+//     type: Boolean,
+//     default: false
+//   },
+//   bloodHistory: {
+//     type: Boolean,
+//     default: false
+//   },
+//   neurologicalCase: {
+//     type: Boolean,
+//     default: false
+//   },
+//   info: {
+//     type: String,
+//     default: null
+//   },
+// });
 
 
 const bookmarks = mongoose.Schema({
@@ -19,11 +34,20 @@ const bookmarks = mongoose.Schema({
   content: String,
 });
 
-const trustedPerson = mongoose.Schema({
-  firstname: String,
-  lastname: String,
-  phoneNumber: Number,
-});
+// const trustedPerson = mongoose.Schema({
+//   firstname: {
+//     type: String,
+//     default: null
+//   },
+//   lastname: {
+//     type: String,
+//     default: null
+//   },
+//   phoneNumber: {
+//     type: Number,
+//     default: null
+//   },
+// });
 
 const userSchema = mongoose.Schema({
   //User Info
@@ -39,20 +63,81 @@ const userSchema = mongoose.Schema({
   adresse: String,
 
   //Health Info
-  socialSecurityNumber: Number,
-  weight: Number,
-  height: Number,
-  bloodType: String,
-  smoker: Boolean,
-  drugUse: Array,
-  allergies: Array,
-  treatment: Array,
-  medicalHistory: medicalHistory,
-  advanceDirectives: Boolean,
-  trustedPerson: trustedPerson,
+  socialSecurityNumber: {
+    type: Number,
+    default: null
+  },
+  weight: {
+    type: Number,
+    default: null
+  },
+  height: {
+    type: Number,
+    default: null
+  },
+  bloodType: {
+    type: String,
+    default: null
+  },
+  smoker: {
+    type: Boolean,
+    default: false
+  },
+  drugUse: {
+    type: String,
+    default: null
+  },
+  allergies: {
+    type: String,
+    default: null
+  },
+  treatment: {
+    type: String,
+    default: null
+  },
+  medicalHistory: {
+    cardiacCase: {
+      type: Boolean,
+      default: false
+    },
+    pulmonaryCase: {
+      type: Boolean,
+      default: false
+    },
+    bloodHistory: {
+      type: Boolean,
+      default: false
+    },
+    neurologicalCase: {
+      type: Boolean,
+      default: false
+    },
+    info: {
+      type: String,
+      default: null
+    },
+  },
+  advanceDirectives: {
+    type: Boolean,
+    default: false
+  },
+  trustedPerson: {
+    firstname: {
+      type: String,
+      default: null
+    },
+    lastname: {
+      type: String,
+      default: null
+    },
+    phoneNumber: {
+      type: Number,
+      default: null
+    },
+  },
 
   //App Usage
-  bookmarks: bookmarks,
+  bookmarks: [bookmarks],
   itineraries: [{ type: mongoose.Schema.Types.ObjectId, ref: "itineraries" }],
 });
 

@@ -23,11 +23,31 @@ router.get('/', (req, res) => {
     });
 });
 
+// Route pour une recherche d'articles
+router.get('/:search', (req, res) => {
+
+  // recherche de l'utilisateur dans l'onglet article
+  const word = req.params.search
+
+  // regex qui supprime les espaces dans l'input de la recherche
+  const search = word.replace(/\s/g,'')
+
+  fetch(`https://newsapi.org/v2/everything?language=fr&q=montagne+${search}&apiKey=${apiKey}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === 'ok') {
+        res.json({ articles: data.articles });
+      } else {
+        res.json({ error: 'Articles not found' });
+      }
+    });
+});
+
+
 // RETURN EXEMPLE
 
 //   "articles": [
   // {
-  //   "number": 19,
   //   "articles": [
   //     {
   //       "source": {
@@ -43,24 +63,6 @@ router.get('/', (req, res) => {
   //       "content": "À trois ans des JO de Milan et Cortina d'Ampezzo, la France a signé un magnifique doublé avec les gros globes de cristal de Emily Harrop et Thibault Anselmet. Les deux Tricolores ont fini premiers au… [+1749 chars]"
   //     },
 
-  // Faire route pour une recherche d'articles
-  router.get('/:search', (req, res) => {
 
-    // recherche de l'utilisateur dans l'onglet article
-    // gerer la casse et les espaces !!
-    const search = req.params.search
-
-    fetch(`https://newsapi.org/v2/everything?q=${search}&apiKey=${apiKey}`)
-      .then(response => response.json())
-      .then(data => {
-        if (data.status === 'ok') {
-          // return nombre d'articles et tous les articles avec le mot clé alpinisme
-          // traitement dans le front pour trie du top article
-          res.json({ number: data.totalResults, articles: data.articles });
-        } else {
-          res.json({ error: 'Articles not found' });
-        }
-      });
-  });
 
 module.exports = router;
