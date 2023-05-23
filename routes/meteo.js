@@ -30,7 +30,7 @@ router.get('/location/:location', (req, res) => {
 
 // GET Current conditions according to location key
 
-router.get('/locationKey/:locationKey', (req, res) => {
+router.get('/current/:locationKey', (req, res) => {
   const locationKey = req.params.locationKey;
 
   fetch(
