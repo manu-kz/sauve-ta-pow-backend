@@ -48,6 +48,7 @@ router.post("/signup", async (req, res) => {
     trustedPerson,
     bookmarks,
     itineraries,
+    favoriteBra,
   } = req.body;
 
   const findUserByUsername = await User.findOne({ username: username });
@@ -83,6 +84,7 @@ router.post("/signup", async (req, res) => {
       trustedPerson: trustedPerson,
       bookmarks: bookmarks,
       itineraries: itineraries,
+      favoriteBra: favoriteBra,
     });
     res.json({
       result: true,
@@ -141,6 +143,7 @@ router.post("/update", async (req, res) => {
     medicalHistory,
     advanceDirectives,
     trustedPerson,
+    favoriteBra,
   } = req.body;
   console.log("req.body", req.body);
 
@@ -165,6 +168,7 @@ router.post("/update", async (req, res) => {
       medicalHistory,
       advanceDirectives,
       trustedPerson,
+      favoriteBra,
     });
   if (updateUser.modifiedCount === 0) {
     res.json({
