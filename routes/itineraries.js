@@ -10,34 +10,52 @@ const apiKey = process.env.MAP_API_KEY;;
 
 
 /* POST new Itinerary */
-router.post('/', async (req, res) => {
+router.post('/newItinerary', async (req, res) => {
   if (!checkBody(req.body, ['departure', 'arrival', 'itineraryName', 'membersNumber', 'date'])) {
     res.json({ result: false, error: 'Missing or empty fields' });
     return;
   }
 
-  const encadrant = await User.findOne({ username: encadrantName })
-  const encadrantID = encadrant._id
-  console.log('encadrant _id :', encadrantID);
+  // const encadrant = await User.findOne({ username: encadrantName })
+  // const encadrantID = encadrant._id
+  // console.log('encadrant _id :', encadrantID);
 
-  const participant = await findOne({ username: participantName  })
-  const participantID = participant._id
-  console.log('encadrant _id :', encadrantID);
+  // trouver les participant dans la db si ils existe afin de raccrocher la clé étrangère a leur doc user 
+  // const participant = await findOne({ username: participantName  })
+  // const participantID = participant._id
+  // console.log('encadrant _id :', encadrantID);
+
+  const {
+    itineraryImg,
+    itineraryName,
+    membersNumber,
+    time,
+    date,
+    members,
+    supervisor,
+    disciplines,
+    departure,
+    waypoints,
+    waypointsName,
+    arrival
+  } = req.body
 
 
   const newItinerary = await Itinerary.create({
-    itineraryImg: req.body.itineraryImg,
-    itineraryName: req.body.itineraryName,
-    membersNumber: 2,
-    date: req.body.date,
-    member: [new ObjectId(participantID)],
-    supervisor: [new ObjectId(encadrantID)],
-    disciplines: [req.body.disciplines],
-    departure: {latitude: String, longitude: String},
-    waypoints: [{latitude: String, longitude: String}],
-    arrival: {latitude: String, longitude: String},
+    itineraryImg: itineraryImg,
+    itineraryName: itineraryName,
+    membersNumber: membersNumber,
+    time: time,
+    date: date,
+    member: members,
+    supervisor: supervisor,
+    disciplines: disciplines,
+    departure: departure,
+    waypoints: waypoints,
+    waypointsName: waypointsName,
+    arrival: arrival,
   })
-    res.json({ result: true, itinerary: data });
+    res.json({ result: true, itinerary: newItinerary });
 });
 
 //Afficher les itinéraires d'un utilisateur 

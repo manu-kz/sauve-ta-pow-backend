@@ -183,29 +183,6 @@ router.get('/:token', (req, res) => {
   const token = req.params.token
   User.find({token}).then(data => {
     if(data) {
-      const {
-        firstname,
-        lastname,
-        username,
-        email,
-        password,
-        phoneNumber,
-        dateOfBirth,
-        adresse,
-        socialSecurityNumber,
-        weight,
-        height,
-        smoker,
-        bloodType,
-        allergies,
-        treatment,
-        medicalHistory,
-        advanceDirectives,
-        trustedPerson,
-        bookmarks,
-        itineraries,
-      } = data
-      console.log(data)
       res.json({result: true, user: data })
     } else {
       res.json({ result: false, error: 'user not found or problem in backend'})
