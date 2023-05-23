@@ -139,6 +139,10 @@ const userSchema = mongoose.Schema({
   //App Usage
   bookmarks: [bookmarks],
   itineraries: [{ type: mongoose.Schema.Types.ObjectId, ref: "itineraries" }],
+  favoriteBra: {
+    type: String,
+    default: null
+  },
 });
 
 const User = mongoose.model("users", userSchema);
