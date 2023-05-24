@@ -11,10 +11,6 @@ const apiKey = process.env.MAP_API_KEY;;
 
 /* POST new Itinerary */
 router.post('/newItinerary', async (req, res) => {
-  if (!checkBody(req.body, ['departure', 'arrival', 'itineraryName', 'membersNumber', 'date'])) {
-    res.json({ result: false, error: 'Missing or empty fields' });
-    return;
-  }
 
   // const encadrant = await User.findOne({ username: encadrantName })
   // const encadrantID = encadrant._id
@@ -40,7 +36,20 @@ router.post('/newItinerary', async (req, res) => {
     arrival
   } = req.body
 
-
+  console.log('data back post itinerary ==> ',    
+    itineraryImg,
+    itineraryName,
+    membersNumber,
+    time,
+    date,
+    members,
+    supervisor,
+    disciplines,
+    departure,
+    waypoints,
+    waypointsName,
+    arrival)
+    
   const newItinerary = await Itinerary.create({
     itineraryImg: itineraryImg,
     itineraryName: itineraryName,

@@ -7,18 +7,21 @@ const waypoints = mongoose.Schema({
   });
 
 const itinerarySchema = mongoose.Schema({
-    itineraryImg: String,
+    itineraryImg: {
+        type: String,
+        default: null
+      },
 	itineraryName: String,
-    membersNumber: Number,
+    membersNumber: String,
     time: Number,
     date: Date,
-    
-    members: [String],
+
+    members: Array,
     supervisor: String,
-    disciplines: [String],
+    disciplines: String,
     departure: {latitude: String, longitude: String},
     waypoints: [waypoints],
-    waypointsName: [String],
+    waypointsName: Array,
     arrival: {latitude: String, longitude: String}
 });
 
