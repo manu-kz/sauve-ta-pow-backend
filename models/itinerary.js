@@ -20,9 +20,11 @@ const itinerarySchema = mongoose.Schema({
     supervisor: String,
     disciplines: String,
     departure: {latitude: String, longitude: String},
+    departureName: String,
     waypoints: [waypoints],
     waypointsName: Array,
-    arrival: {latitude: String, longitude: String}
+    arrival: {latitude: String, longitude: String},
+    arrivalName: String, 
 });
 
 const Itinerary = mongoose.model('itineraries', itinerarySchema);

@@ -22,7 +22,7 @@ router.post('/newItinerary/:token', (req, res) => {
   // console.log('encadrant _id :', encadrantID);
 
   const token = req.params.token
-  console.log(token)
+
   const {
     itineraryImg,
     itineraryName,
@@ -33,11 +33,14 @@ router.post('/newItinerary/:token', (req, res) => {
     supervisor,
     disciplines,
     departure,
+    departureName,
     waypoints,
     waypointsName,
-    arrival
+    arrival,
+    arrivalName,
   } = req.body
-    
+
+  // création d'un nouvel itinéraire
   const newItinerary = new Itinerary({
     itineraryImg: itineraryImg,
     itineraryName: itineraryName,
@@ -48,9 +51,11 @@ router.post('/newItinerary/:token', (req, res) => {
     supervisor: supervisor,
     disciplines: disciplines,
     departure: departure,
+    departureName: departureName,
     waypoints: waypoints,
     waypointsName: waypointsName,
     arrival: arrival,
+    arrivalName, arrivalName,
   })
 
   // save le nouvel itinéraire dans la collection itineraries
