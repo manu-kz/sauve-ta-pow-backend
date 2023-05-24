@@ -92,9 +92,16 @@ router.post('/newItinerary/:token', (req, res) => {
 
 //Afficher les itinéraires d'un utilisateur 
 router.get('/:token', (req, res) => {
-  Itinerary.find().then(data => {
-		res.json({ itinerary: data });
-	});
+  const token = req.params.token
+  User.findOne({ token})
+  .populate('itineraries')
+  .then(data => {
+    if(data) {
+      res.json({ result: true, itineraries: data.itineraries})
+    } else {
+      res.json({result: false, error: 'user not found or problem in foreign key'})
+    }
+  })
 })
 
 //Modifier les informations d'un itinéraire
