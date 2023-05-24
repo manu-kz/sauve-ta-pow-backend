@@ -11,7 +11,7 @@ const itinerarySchema = mongoose.Schema({
         type: String,
         default: null
       },
-	itineraryName: String,
+	  itineraryName: String,
     membersNumber: String,
     time: Number,
     date: Date,

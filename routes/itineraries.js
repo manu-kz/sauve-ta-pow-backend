@@ -10,7 +10,7 @@ const apiKey = process.env.MAP_API_KEY;;
 
 
 /* POST new Itinerary */
-router.post('/newItinerary', async (req, res) => {
+router.post('/newItinerary/:token', (req, res) => {
 
   // const encadrant = await User.findOne({ username: encadrantName })
   // const encadrantID = encadrant._id
@@ -21,6 +21,8 @@ router.post('/newItinerary', async (req, res) => {
   // const participantID = participant._id
   // console.log('encadrant _id :', encadrantID);
 
+  const token = req.params.token
+  console.log(token)
   const {
     itineraryImg,
     itineraryName,
@@ -35,28 +37,14 @@ router.post('/newItinerary', async (req, res) => {
     waypointsName,
     arrival
   } = req.body
-
-  console.log('data back post itinerary ==> ',    
-    itineraryImg,
-    itineraryName,
-    membersNumber,
-    time,
-    date,
-    members,
-    supervisor,
-    disciplines,
-    departure,
-    waypoints,
-    waypointsName,
-    arrival)
     
-  const newItinerary = await Itinerary.create({
+  const newItinerary = new Itinerary({
     itineraryImg: itineraryImg,
     itineraryName: itineraryName,
     membersNumber: membersNumber,
     time: time,
     date: date,
-    member: members,
+    members: members,
     supervisor: supervisor,
     disciplines: disciplines,
     departure: departure,
@@ -64,11 +52,41 @@ router.post('/newItinerary', async (req, res) => {
     waypointsName: waypointsName,
     arrival: arrival,
   })
-    res.json({ result: true, itinerary: newItinerary });
+
+  // save le nouvel itinéraire dans la collection itineraries
+  newItinerary.save()
+  .then(() => {
+    // find l'itinéraire save précédement
+    Itinerary.findOne({itineraryName}).then(data => {
+      if(data) {
+        console.log('data ID',data._id)
+        // récupère l'id de l'itinéraire
+        const id = data._id
+        // Update dans le doc du user en fonction du token et insère la clé étrangère (id) dans la clé itineraries du user
+        User.updateOne({token}, {$push: { itineraries: id }} ).then(data => {
+          if(data) {
+            res.json({ result: true, itinerary: newItinerary });
+          } else {
+            res.json({ result: false, error: 'push did not work'})
+          }
+        })
+      }
+    })
+  })
 });
 
+// post dans le doc user la clé étrangère de l'itinéraire post précédement
+router.post('/newItinerary/:token', (req, res) => {
+  const token = req.params.token
+  User.findOne({token}).then(data => {
+
+  })
+}) 
+
+
+
 //Afficher les itinéraires d'un utilisateur 
-router.get('/', (req, res) => {
+router.get('/:token', (req, res) => {
   Itinerary.find().then(data => {
 		res.json({ itinerary: data });
 	});
