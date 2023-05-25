@@ -115,7 +115,6 @@ router.get("/bra/", (req, res) => {
 // GET unique BRA
 router.get("/bra/:massif", (req, res) => {
   const { massif } = req.params;
-  console.log("massif", massif);
 
   let braId = () =>  {
     switch (massif) {

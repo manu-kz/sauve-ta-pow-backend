@@ -11,12 +11,10 @@ const apiKey = process.env.MAP_API_KEY;
 router.post("/newItinerary/:token", (req, res) => {
   // const encadrant = await User.findOne({ username: encadrantName })
   // const encadrantID = encadrant._id
-  // console.log('encadrant _id :', encadrantID);
 
   // trouver les participant dans la db si ils existe afin de raccrocher la clé étrangère a leur doc user
   // const participant = await findOne({ username: participantName  })
   // const participantID = participant._id
-  // console.log('encadrant _id :', encadrantID);
 
   const token = req.params.token;
 
@@ -61,7 +59,6 @@ router.post("/newItinerary/:token", (req, res) => {
     // find l'itinéraire save précédement
     Itinerary.findOne({ itineraryName }).then((data) => {
       if (data) {
-        console.log("data ID", data._id);
         // récupère l'id de l'itinéraire
         const id = data._id;
         // Update dans le doc du user en fonction du token et insère la clé étrangère (id) dans la clé itineraries du user
@@ -115,7 +112,6 @@ router.get("/what3words/:longitude/:latitude", async (req, res) => {
     `https://api.what3words.com/v3/convert-to-3wa?key= ${apiKey}&coordinates=${longitude}%2C${latitude}&language=fr&format=json`
   );
   const jsonRes = await rawRes.json();
-  console.log("jsonrRes", jsonRes);
 
   res.json({ what3words: jsonRes });
 });

@@ -25,7 +25,6 @@ router.post("/signup", async (req, res) => {
     return;
   }
 
-  console.log("req.body", req.body);
 
   const {
     firstname,
@@ -145,7 +144,6 @@ router.post("/update", async (req, res) => {
     trustedPerson,
     favoriteBra,
   } = req.body;
-  console.log("req.body", req.body);
 
   const updateUser = await User.updateOne(
     { token: token },
