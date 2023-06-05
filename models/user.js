@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const bookmarks = mongoose.Schema({
   author: String,
   title: String,
@@ -27,74 +26,74 @@ const userSchema = mongoose.Schema({
   //Health Info
   socialSecurityNumber: {
     type: Number,
-    default: null
+    default: null,
   },
   weight: {
     type: Number,
-    default: null
+    default: null,
   },
   height: {
     type: Number,
-    default: null
+    default: null,
   },
   bloodType: {
     type: String,
-    default: null
+    default: null,
   },
   smoker: {
     type: Boolean,
-    default: false
+    default: false,
   },
   drugUse: {
     type: String,
-    default: null
+    default: null,
   },
   allergies: {
     type: String,
-    default: null
+    default: null,
   },
   treatment: {
     type: String,
-    default: null
+    default: null,
   },
   medicalHistory: {
     cardiacCase: {
       type: Boolean,
-      default: false
+      default: false,
     },
     pulmonaryCase: {
       type: Boolean,
-      default: false
+      default: false,
     },
     bloodHistory: {
       type: Boolean,
-      default: false
+      default: false,
     },
     neurologicalCase: {
       type: Boolean,
-      default: false
+      default: false,
     },
     info: {
       type: String,
-      default: null
+      default: null,
     },
   },
   advanceDirectives: {
     type: Boolean,
-    default: false
+    default: false,
   },
   trustedPerson: {
     firstname: {
       type: String,
-      default: null
+      default: null,
     },
     lastname: {
       type: String,
-      default: null
+      default: null,
     },
     phoneNumber: {
       type: Number,
-      default: null
+      default: null,
     },
   },
 
@@ -103,7 +102,7 @@ const userSchema = mongoose.Schema({
   itineraries: [{ type: mongoose.Schema.Types.ObjectId, ref: "itineraries" }],
   favoriteBra: {
     type: String,
-    default: null
+    default: null,
   },
 });
 
