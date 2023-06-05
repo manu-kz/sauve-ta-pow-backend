@@ -1,28 +1,5 @@
 const mongoose = require("mongoose");
 
-// const medicalHistory = mongoose.Schema({
-//   cardiacCase: {
-//     type: Boolean,
-//     default: false
-//   },
-//   pulmonaryCase: {
-//     type: Boolean,
-//     default: false
-//   },
-//   bloodHistory: {
-//     type: Boolean,
-//     default: false
-//   },
-//   neurologicalCase: {
-//     type: Boolean,
-//     default: false
-//   },
-//   info: {
-//     type: String,
-//     default: null
-//   },
-// });
-
 
 const bookmarks = mongoose.Schema({
   author: String,
@@ -33,21 +10,6 @@ const bookmarks = mongoose.Schema({
   publishedAt: String,
   content: String,
 });
-
-// const trustedPerson = mongoose.Schema({
-//   firstname: {
-//     type: String,
-//     default: null
-//   },
-//   lastname: {
-//     type: String,
-//     default: null
-//   },
-//   phoneNumber: {
-//     type: Number,
-//     default: null
-//   },
-// });
 
 const userSchema = mongoose.Schema({
   //User Info
