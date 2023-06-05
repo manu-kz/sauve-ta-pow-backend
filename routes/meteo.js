@@ -112,7 +112,7 @@ router.get("/bra/", (req, res) => {
     .catch((err) => res.json({ error: "BRA not found" }));
 });
 
-// GET unique BRA
+// GET unique BRA pour le dashboard. Récupérer seulement le BRA favoris
 router.get("/bra/:massif", (req, res) => {
   const { massif } = req.params;
 
