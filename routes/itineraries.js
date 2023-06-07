@@ -98,7 +98,7 @@ router.get("/what3words/:longitude/:latitude", async (req, res) => {
   const apiKey = "9JKGGCZS";
 
   const rawRes = await fetch(
-    `https://api.what3words.com/v3/convert-to-3wa?key= ${apiKey}&coordinates=${longitude}%2C${latitude}&language=fr&format=json`
+    `https://api.what3words.com/v3/convert-to-3wa?key= ${apiKey}&coordinates=${latitude}%2C${longitude}&language=fr&format=json`
   );
   const jsonRes = await rawRes.json();
 
