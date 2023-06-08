@@ -76,12 +76,6 @@ router.post("/newItinerary/:token", (req, res) => {
   });
 });
 
-// post dans le doc user la clé étrangère de l'itinéraire post précédement
-router.post("/newItinerary/:token", (req, res) => {
-  const token = req.params.token;
-  User.findOne({ token }).then((data) => {});
-});
-
 //Afficher les itinéraires d'un utilisateur 
 router.get('/:token', (req, res) => {
   const token = req.params.token
@@ -95,11 +89,6 @@ router.get('/:token', (req, res) => {
     }
   })
 })
-
-//Modifier les informations d'un itinéraire
-router.put("/", (req, res) => {});
-
-//Supprimer un itineraire
 
 //RECEVOIR LES 3 MOTS DE LOCALISATION
 
