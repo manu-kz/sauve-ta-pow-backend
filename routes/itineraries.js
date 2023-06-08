@@ -4,18 +4,11 @@ var router = express.Router();
 const fetch = require("node-fetch");
 const Itinerary = require("../models/itinerary");
 const User = require("../models/user");
-const { checkBody } = require("../modules/checkBody");
 const apiKey = process.env.MAP_API_KEY;
 
 /* POST new Itinerary */
 router.post("/newItinerary/:token", (req, res) => {
-  // const encadrant = await User.findOne({ username: encadrantName })
-  // const encadrantID = encadrant._id
-
   // trouver les participant dans la db si ils existe afin de raccrocher la clé étrangère a leur doc user
-  // const participant = await findOne({ username: participantName  })
-  // const participantID = participant._id
-
   const token = req.params.token;
 
   const {

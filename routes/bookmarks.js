@@ -64,23 +64,5 @@ router.delete('/deleteBookmark/:token', (req, res) => {
       }
     });
   });
-
-  // RETURN ARTICLE EXEMPLE
-
-//   "articles": [
-  // {
-  //   "articles": [
-  //     {
-  //       "source": {
-  //         "id": "lequipe",
-  //         "name": "L'equipe"
-  //       },
-  //       "author": "David Michel",
-  //       "title": "Les Français Thibault Anselmet et Emily Harrop vainqueurs de la Coupe du monde de ski-alpinisme",
-  //       "description": "Les Français Thibault Anselmet et Emily Harrop ont remporté la Coupe du monde 2023 de ski-alpinisme, ce samedi à Tromso en Norvège.",
-  //       "url": "https://www.lequipe.fr/Adrenaline/Ski-alpinisme/Actualites/Les-francais-thibault-anselmet-et-emily-harrop-vainqueurs-de-la-coupe-du-monde-de-ski-alpinisme/1391593",
-  //       "urlToImage": "https://medias.lequipe.fr/img-photo-jpg/thibault-anselmet-c-angot-ffme/1500000001773803/237:354,1148:962-640-427-75/01c40.jpg",
-  //       "publishedAt": "2023-04-15T15:19:57Z",
-  //       "content": "À trois ans des JO de Milan et Cortina d'Ampezzo, la France a signé un magnifique doublé avec les gros globes de cristal de Emily Harrop et Thibault Anselmet. Les deux Tricolores ont fini premiers au… [+1749 chars]"
-  //     },
+  
 module.exports = router;
