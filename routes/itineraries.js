@@ -4,12 +4,7 @@ var router = express.Router();
 const fetch = require("node-fetch");
 const Itinerary = require("../models/itinerary");
 const User = require("../models/user");
-<<<<<<< HEAD
-const { checkBody } = require("../modules/checkBody");
 const apiKey = process.env.WHAT_THREE_WORDS;
-=======
-const apiKey = process.env.MAP_API_KEY;
->>>>>>> 4e275a7e15e25b7ee7250472b8b13b4b1055fa03
 
 /* POST new Itinerary */
 router.post("/newItinerary/:token", (req, res) => {
