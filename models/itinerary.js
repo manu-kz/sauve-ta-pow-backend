@@ -13,7 +13,7 @@ const itinerarySchema = mongoose.Schema({
       },
 	  itineraryName: String,
     membersNumber: String,
-    time: Number,
+    time: String,
     date: Date,
 
     members: Array,

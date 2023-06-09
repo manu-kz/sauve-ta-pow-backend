@@ -10,7 +10,7 @@ const apiKey = process.env.MAP_API_KEY;
 router.post("/newItinerary/:token", (req, res) => {
   // trouver les participant dans la db si ils existe afin de raccrocher la clé étrangère a leur doc user
   const token = req.params.token;
-
+  console.log('back ==>',req.body)
   const {
     itineraryImg,
     itineraryName,
