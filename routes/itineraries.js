@@ -4,7 +4,7 @@ var router = express.Router();
 const fetch = require("node-fetch");
 const Itinerary = require("../models/itinerary");
 const User = require("../models/user");
-const apiKey = process.env.MAP_API_KEY;
+const apiKey = process.env.WHAT_THREE_WORDS;
 
 /* POST new Itinerary */
 router.post("/newItinerary/:token", (req, res) => {
@@ -88,7 +88,6 @@ router.get('/:token', (req, res) => {
 router.get("/what3words/:longitude/:latitude", async (req, res) => {
   const { longitude, latitude } = req.params;
 
-  const apiKey = "9JKGGCZS";
 
   const rawRes = await fetch(
     `https://api.what3words.com/v3/convert-to-3wa?key= ${apiKey}&coordinates=${latitude}%2C${longitude}&language=fr&format=json`
